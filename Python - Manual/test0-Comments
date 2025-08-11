@@ -1,0 +1,10 @@
+# print("hello Surinder")
+# print("hello Tejveer")
+# print("hello Sushma")
+# print("hello Sukriti")
+# name = input("enter your name : ")
+# print("your name is", name)
+i = 100
+a = "Surinder"
+print(i)
+print(a)
