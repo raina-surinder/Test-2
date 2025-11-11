@@ -8,6 +8,122 @@
 <body>
     
     <h1>First VSCode HTML File</h1>
-    
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+
+    <style>
+        .three-cols {
+            display: flex;
+            gap: 1rem;
+            align-items: flex-start;
+        }
+        .col-left { width: 20%; }
+        .col-mid  { width: 50%; }
+        .col-right{ width: 30%; }
+
+        @media (max-width: 768px) {
+            .three-cols { flex-direction: column; }
+            .col-left, .col-mid, .col-right { width: 100%; }
+        }
+
+        /* Optional: make the left table appear as a vertical nav */
+        .vertical-table { margin-bottom: 0; }
+        .vertical-table tbody tr td {
+            padding: 0.75rem 1rem;
+        }
+        .vertical-table tbody tr:hover {
+            background-color: #f8f9fa;
+            cursor: pointer;
+        }
+    </style>
+
+    <div class="three-cols">
+        <aside class="col-left">
+            <table class="table table-striped vertical-table">
+                <tbody>
+                    <tr><td>About Us</td></tr>
+                    <tr><td>Services</td></tr>
+                    <tr><td>Contact Us</td></tr>
+                </tbody>
+            </table>
+        </aside>
+
+        <main class="col-mid">
+            <h2 class="text-center">Blogs</h2>
+
+            <div class="articles mt-3">
+            <article class="mb-2 p-2 border rounded">
+                <a href="blog1.html">Blog1</a>
+            </article>
+            <article class="mb-2 p-2 border rounded">
+                <a href="blog2.html">Blog2</a>
+            </article>
+            <article class="mb-2 p-2 border rounded">
+                <a href="blog3.html">Blog3</a>
+            </article>
+            <article class="mb-2 p-2 border rounded">
+                <a href="blog4.html">Blog4</a>
+            </article>
+            <article class="mb-2 p-2 border rounded">
+                <a href="blog5.html">Blog5</a>
+            </article>
+            </div>
+
+            <style>
+            /* center the heading and style list items */
+            .col-mid h2 { text-align: center; }
+
+            .col-mid .articles article {
+                transition: opacity 0.6s ease, transform 0.4s ease;
+                background: #fff;
+            }
+            .col-mid .articles article.fade-out {
+                opacity: 0;
+                transform: translateY(-6px);
+            }
+
+            .col-mid .articles a {
+                display: block;
+                color: inherit;
+                text-decoration: none;
+            }
+            </style>
+
+            <script>
+            (function () {
+                const container = document.querySelector('.col-mid .articles');
+                if (!container) return;
+
+                const rotateOnce = () => {
+                const first = container.firstElementChild;
+                if (!first) return;
+                first.classList.add('fade-out');
+                // wait for fade animation, then move it to the end and remove fade class
+                setTimeout(() => {
+                    container.appendChild(first);
+                    // allow reflow so removal transition is clean
+                    requestAnimationFrame(() => {
+                    first.classList.remove('fade-out');
+                    });
+                }, 600);
+                };
+
+                // rotate every 30 seconds
+                let interval = setInterval(rotateOnce, 30000);
+
+                // optional: pause rotation while user hovers the list
+                container.addEventListener('mouseenter', () => clearInterval(interval));
+                container.addEventListener('mouseleave', () => {
+                clearInterval(interval);
+                interval = setInterval(rotateOnce, 30000);
+                });
+            })();
+            </script>
+        </main>
+
+        <section class="col-right">
+            <h2>Right Section</h2>
+            <!--<p>Content for the right (30%) section goes here.</p>-->
+        </section>
+    </div>
 </body>
 </html>
